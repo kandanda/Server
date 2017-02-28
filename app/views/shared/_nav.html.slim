@@ -1,21 +1,18 @@
-nav.top-bar data= {topbar: true, options: "is_hover:false"}
-  ul.title-area
-    li.name
-      h1
-        = link_to "Kandanda", root_path
-    li.toggle-topbar.menu-icon
-      a href= '#'
-        span Menu
-  section.top-bar-section
-    ul
+.title-bar(data-responsive-toggle="main-menu" data-hide-for="medium")
+  button.menu-icon(type='button' data-toggle=true)
+#main-menu.top-bar data= {topbar: true, options: "is_hover:false"}
+  .top-bar-left
+    ul.dropdown.menu(data-dropdown-menu=true)
       li
-        a href= '#'
-          Spielpläne
-    ul.right
+        = link_to "Kandanda", root_path
+      li
+        a href= '#' Spielpläne
+  .top-bar-right
+    ul.menu(data-responsive-menu="drilldown medium-dropdown")
       - if current_user
-        li.has-dropdown
+        li.has-submenu
           a href= '#' Logged in as #{current_user}
-          ul.dropdown
+          ul.submenu.menu.vertical
             li= link_to "Profile", current_user
             li= link_to "Sign Out", destroy_user_session_path, method: :delete
       - else
