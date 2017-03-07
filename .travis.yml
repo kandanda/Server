@@ -18,5 +18,5 @@ addons:
       description: "<Your project description here>"
     notification_email: mike@otep.ch
     build_command_prepend: ""
-    build_command: cov-build --dir cov-int --no-command --fs-capture-search ./
+    build_command: ""
     branch_pattern: master
