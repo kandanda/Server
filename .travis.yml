@@ -2,3 +2,21 @@ language: ruby
 cache: bundler
 rvm:
   - 2.3.3
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "NjvFidVMYu/BJBNGRl1+40kRVHeodH+CJv29b9wW3w7FtPWk9WECBWc/02ksHA7WIWR10asMPnH+y9IExnCSgAmPysAuKNtYVpRjGipXW/V834NtqouaXs2TkiQFIq6bqIxmxwqey9EfVMoMxPanfuaC/XsBABUytdhDzbkRj2Qbk+sDvWDLkX4h//Dlsys8sOfCJgP/UnIn/exOnsxZRnwaemqjFLJi2C+J+O6QTDx3mbEK7+in+jwifNbrEcl3afhJQi2Zg6eTjWZW8XZ3wF2Ol3RxBji1mleVajJHAmfYxja5G/d/LV0ixD0R3/jE1r94chEKbB6dzKReCDEYndL6s/DoTxDZhnYPOlYWKVl/upCS8rc9rXI+Sw0T5Q921TD4gJTMBITSQ3BHlSU4NuN6RMpT3KOm4h+szK41BFaSTsDVpgTouBIaam9bF8xKBDBW/mb91GQ/o4zE38oGOj/4X4pBGloiCo+U4frQbkvVbV9SX+EEedAUupU/NDenRaOwtIDkc74VL4KkxpO9QfiL4qp0BnRTiwWMWfTfTBPgSuT3VhGSEk40mHcdvFkF2Iv33p7KU80mNntFe/pZhzKvUmgYOfFq+ofmWL3QZ6mcji8YX66jehp4/VKiD46ugTXVjmAc8l5xISw9DfHin9sf753eQaSTPT7EoY2hgWQ="
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "kandanda/Server"
+      description: "<Your project description here>"
+    notification_email: mike@otep.ch
+    build_command_prepend: ""
+    build_command: cov-build --dir cov-int --no-command --fs-capture-search ./
+    branch_pattern: coverity_scan
