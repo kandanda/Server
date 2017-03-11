@@ -9,11 +9,11 @@
         a href= '#' Spielpläne
   .top-bar-right
     ul.menu(data-responsive-menu="drilldown medium-dropdown")
-      - if current_user
+      - if current_organizer
+        li= link_to "Meine Turniere", my_tournaments_path
         li.has-submenu
-          a href= '#' Logged in as #{current_user}
+          a href= '#' Logged in as #{current_organizer}
           ul.submenu.menu.vertical
-            li= link_to "Profile", current_user
-            li= link_to "Sign Out", destroy_user_session_path, method: :delete
+            li= link_to "Sign Out", destroy_organizer_session_path, method: :delete
       - else
-        li= link_to "Sign In", new_user_session_path
+        li= link_to "Sign In", new_organizer_session_path

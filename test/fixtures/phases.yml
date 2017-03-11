@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: Gruppenphase
+  from: 2017-03-11 21:12:03
+  until: 2017-03-11 21:12:03
+  tournament_id: 1
+
+two:
+  id: 2
+  name: "Top 8"
+  from: 2017-03-11 21:12:03
+  until: 2017-03-11 21:12:03
+  tournament_id: 1

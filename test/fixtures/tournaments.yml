@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: Tournier März
+  organizer_id: 2
+
+two:
+  id: 2
+  name: Spezial Tournier
+  organizer_id: 2

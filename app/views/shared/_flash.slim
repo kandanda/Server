@@ -1,6 +1,7 @@
-- flashes = {:notice => 'success', :alert => 'standard', :error => 'alert', :secondary => 'secondary'}
+- flashes = {:notice => 'success', :alert => 'warning', :error => 'alert', :secondary => 'secondary'}
 - flashes.each do |key, value|
   - if flash[key]
-    .alert-box.value data = { alert: '' }
+    .callout data = { closable: '' } class=value
       = flash[key]
-      = link_to '&times;'.html_safe, '#', :class => 'close'
+      button class="close-button" aria-label="Dismiss alert" type="button" data-close=''
+       span aria-hidden="true" &times;

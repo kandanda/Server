@@ -81,6 +81,17 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.action_mailer.smtp_settings = {
+    address:              'cpanel12.citrin.ch',
+    port:                 587,
+    domain:               'kandanda.ch',
+    user_name:            'no-reply+kandanda.ch',
+    password:             Rails.application.secrets.system_mailer_password,
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+
+
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

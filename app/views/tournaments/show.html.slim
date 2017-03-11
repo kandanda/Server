@@ -1,0 +1,14 @@
+h1= @tournament
+
+- @tournament.phases.each do |phase|
+  h2=phase
+  table.table
+    tr
+      th Match
+      th Anfang
+      th Ende
+    - phase.matches.each do |match|
+      tr
+        td=match.participants.join(" vs ")
+        td=match.from
+        td=match.until
