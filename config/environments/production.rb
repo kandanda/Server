@@ -91,6 +91,7 @@ Rails.application.configure do
     enable_starttls_auto: true  }
 
 
+  config.action_mailer.default_url_options = { :host => 'www.kandanda.ch', :protocol => 'https' }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
