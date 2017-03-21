@@ -19,3 +19,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+/coverage
+/vendor/bundle
+/erd.pdf

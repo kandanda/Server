@@ -1,0 +1,9 @@
+# Jira Smart Commits
+# Need the EPJ-<issue> on each line where you use commands
+# Comment:  #comment <comment_string>
+# Time:     #time <value>w <value>d <value>h <value>m <comment_string>
+# Workflow: #<transition_name> <comment_string> (start,resolve,close)
+
+# Example
+# #time 1h 20m Beispielsachen gemacht  #resolve #comment Hashtags are treated as comments
+# * Noticed the dangers of using hashtags and git
