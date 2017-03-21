@@ -1,7 +1,7 @@
 class Api::V1::TournamentsController < Api::V1::ApiController
+  before_filter :authenticate_organizer!
   def create
-    #TODO check this against organizer
-    organizer = Organizer.last
+    organizer = current_organizer
     unless (id = params[:tournament].delete(:id)) && @tournament = organizer.tournaments.where(id: id).first
       @tournament = organizer.tournaments.build
     end
