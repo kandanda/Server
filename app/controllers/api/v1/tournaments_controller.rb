@@ -30,7 +30,7 @@ class Api::V1::TournamentsController < Api::V1::ApiController
         end
       end
     rescue ActionController::ParameterMissing => e
-      render json: e, status: :unprocessable_entity 
+      render json: e.to_s, status: :unprocessable_entity 
     end
   end
 

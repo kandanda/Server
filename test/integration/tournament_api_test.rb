@@ -28,6 +28,7 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
       headers: {"Authorization" =>  "Bearer #{@token}"},
       params: {}
     assert_response :unprocessable_entity
+    assert_equal response.body, "param is missing or the value is empty: tournament"
 
     post "/api/v1/tournaments",
       headers: {"Authorization" =>  "Bearer #{@token}"},
