@@ -37,10 +37,24 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
     post "/api/v1/tournaments",
       headers: {"Authorization" =>  "Bearer #{@token}"},
       params: { tournament: {name: ''}}
+    assert_response :unprocessable_entity
+
     post "/api/v1/tournaments",
       headers: {"Authorization" =>  "Bearer #{@token}"},
-      params: { tournament: {name: '', phases: [{from: Time.now}]}}
+      params: { tournament: {name: 'my tourney', phases: [{from: Time.now}]}}
     assert_response :unprocessable_entity
+
+    post "/api/v1/tournaments",
+      headers: {"Authorization" =>  "Bearer #{@token}"},
+      params: { tournament: {name: 'my tourney', phases: [{from: Time.now, until: 10.minutes.from_now}]}}
+    assert_response :unprocessable_entity
+    assert_includes JSON.parse(response.body)['phase']['name'], "can't be blank"
+
+    post "/api/v1/tournaments",
+      headers: {"Authorization" =>  "Bearer #{@token}"},
+      params: { tournament: {name: 'my tourney', phases: [{name: "myphase", from: Time.now, until: 10.minutes.ago}]}}
+    assert_response :unprocessable_entity
+    assert_includes JSON.parse(response.body)['phase']['until'], "must be after from"
   end
 
 
