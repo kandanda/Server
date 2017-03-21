@@ -2,7 +2,7 @@ class Api::V1::TournamentsController < Api::V1::ApiController
   def create
     #TODO check this against organizer
     organizer = Organizer.last
-    unless (id = params[:tournament].delete(:id)) && @touranment = organizer.tournaments.where(id: id).first
+    unless (id = params[:tournament].delete(:id)) && @tournament = organizer.tournaments.where(id: id).first
       @tournament = organizer.tournaments.build
     end
     par = params.require(:tournament)
