@@ -3,9 +3,11 @@
 one:
   id: 1
   name: Tournier März
+  secret_token: asdfasdfasdfasdfasfasdf
   organizer_id: 2
 
 two:
   id: 2
   name: Spezial Tournier
   organizer_id: 2
+  secret_token: asdfasdfasdfasdfasfasdfsfjasdkf

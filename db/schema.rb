@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324083921) do
+ActiveRecord::Schema.define(version: 20170324130407) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "phase_id",   null: false
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170324083921) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "secret_token"
+    t.index ["secret_token"], name: "index_tournaments_on_secret_token", unique: true
   end
 
 end

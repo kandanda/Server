@@ -65,6 +65,9 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
       params: JSON.parse(File.read(File.join(Rails.root, "test/example_requests/push_tournament_1.json")))
 
     assert_response :success
+
+    assert_equal JSON.parse(response.body)['tournament']['link'], "/tournaments/#{Tournament.last.secret_token}"
+
     t = Tournament.last
     assert_equal "My little tournament", t.name
     assert_equal 2, t.phases.count
