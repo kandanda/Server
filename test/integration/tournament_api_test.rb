@@ -66,8 +66,6 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
 
     assert_response :success
 
-    assert_equal JSON.parse(response.body)['tournament']['link'], "/tournaments/#{Tournament.last.secret_token}"
-
     t = Tournament.last
     assert_equal "My little tournament", t.name
     assert_equal 2, t.phases.count
@@ -75,6 +73,14 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
     assert_equal 2, t.phases.first.matches.first.participants.count
     assert_equal 2, t.phases.first.matches.last.participants.count
     assert_equal 0, t.phases.last.matches.count
+
+    link = JSON.parse(response.body)['tournament']['link']
+    assert_equal link, "/tournaments/#{Tournament.last.secret_token}"
+
+    get link
+
+    assert_response :success
+
   end
 
   def temper_with(token)

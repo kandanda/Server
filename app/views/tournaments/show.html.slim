@@ -6,7 +6,7 @@
 
 .row
   .large-12.columns
-    - num_pars = @tournament.phases.map{|r| r.matches.map{|m| m.participants.count}.max}.max
+    - num_pars = @tournament.phases.map{|r| r.matches.map{|m| m.participants.count}.max||0}.max
     - @tournament.phases.order(:from).each do |phase|
       h2
         =phase
