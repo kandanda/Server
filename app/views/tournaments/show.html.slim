@@ -1,14 +1,35 @@
-h1= @tournament
+.row
+  .large-6.columns
+    h1= @tournament
+  .large-6.columns
+    = render partial: "shared/google_maps", locals: {location: "HSR Rapperswil"}
 
-- @tournament.phases.each do |phase|
-  h2=phase
-  table.table
-    tr
-      th Match
-      th Anfang
-      th Ende
-    - phase.matches.each do |match|
-      tr
-        td=match.participants.join(" vs ")
-        td=match.from
-        td=match.until
+.row
+  .large-12.columns
+    - num_pars = @tournament.phases.map{|r| r.matches.map{|m| m.participants.count}.max||0}.max
+    - @tournament.phases.order(:from).each do |phase|
+      h2
+        =phase
+        small
+          =<> l phase.from
+          |-
+          =< l phase.until
+      table.table
+        tr
+          - num_pars.times do |i|
+            th
+            th
+          th Anfang
+          th Ende
+          th Where
+        - phase.matches.each do |match|
+          tr
+            td =  match.participants.first
+            - match.participants.each do |p|
+              td
+                - if p.result
+                  b=< "(#{p.result})"
+            td =  match.participants.last
+            td= l match.from
+            td= l match.until
+            td= match.place
