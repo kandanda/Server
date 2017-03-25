@@ -1,10 +1,7 @@
 class Api::V1::AuthController < Api::V1::ApiController
   def create
-    organizer = params[:email]
-    password = params[:password]
-
     organizer = Organizer.find_for_database_authentication(email: params[:email])
-    if organizer.valid_password?(params[:password])
+    if organizer && organizer.valid_password?(params[:password])
       render json: payload(organizer)
     else
       render json: {errors: ['Invalid Email/Password']}, status: :unauthorized
