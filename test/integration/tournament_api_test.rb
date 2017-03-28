@@ -13,6 +13,13 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
     @token = JSON.parse(response.body)['auth_token']
   end
 
+  test "test invalid login on api auth" do
+    post "/api/v1/auth",
+      params: {email: 'invalid@kandanda.ch', password: 'secret' }
+
+    assert_includes JSON.parse(response.body)['errors'], "Invalid Email/Password"
+  end
+
   test "tournament upload with tempered token is rejected" do
     login
     tempered_token = temper_with(@token)
