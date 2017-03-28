@@ -5,13 +5,6 @@ class Tournament < ApplicationRecord
     self.set_token
   end
 
-  def set_token!
-    raise "Can't change secret token" unless self.secret_token.blank?
-
-    self.set_token
-    self.save!
-  end
-
   def to_s
     name
   end
