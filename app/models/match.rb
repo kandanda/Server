@@ -9,7 +9,4 @@ class Match < ApplicationRecord
       self.errors.add(:until, "must be after from")
     end
   end
-  def to_s
-    participants.join(" vs ")
-  end
 end

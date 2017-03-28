@@ -55,6 +55,17 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
       params: { tournament: {name: 'my tourney', phases: [{name: "myphase", from: Time.now, until: 10.minutes.ago}]}}
     assert_response :unprocessable_entity
     assert_includes JSON.parse(response.body)['phase']['until'], "must be after from"
+
+    post "/api/v1/tournaments",
+      headers: {"Authorization" =>  "Bearer #{@token}"},
+      params: { tournament: {name: 'my tourney', phases: [{
+        name: "myphase", from: Time.now, until: 10.minutes.from_now, matches: [{
+          from: Time.now, until: 5.minutes.ago, place: "Hall 1"
+        }]
+      }]}}
+    assert_response :unprocessable_entity
+    assert_includes JSON.parse(response.body)['match']['until'], "must be after from"
+
   end
 
 
@@ -80,6 +91,11 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
     get link
 
     assert_response :success
+
+    get '/tournaments/my'
+
+    assert_response :success
+    assert_includes response.body, "My little tournament"
 
   end
 
