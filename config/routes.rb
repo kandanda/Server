@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :organizers
   get "/tournaments/my" => "tournaments#my", as: 'my_tournaments'
   get "/tournaments/:id" => "tournaments#show", as: 'tournament'

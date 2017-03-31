@@ -251,3 +251,4 @@ end
   m.participants.create(name: pt1, result: rand(5))
   m.participants.create(name: pt2, result: rand(5))
 end
+#AdminUser.create!(email: 'admin@kandanda.ch', password: 'password', password_confirmation: 'password')
