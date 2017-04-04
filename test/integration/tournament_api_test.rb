@@ -35,7 +35,7 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
       headers: {"Authorization" =>  "Bearer #{@token}"},
       params: {}
     assert_response :unprocessable_entity
-    assert_equal response.body, "param is missing or the value is empty: tournament"
+    assert_equal JSON.parse(response.body)['error'], "param is missing or the value is empty: tournament"
 
     post "/api/v1/tournaments",
       headers: {"Authorization" =>  "Bearer #{@token}"},
@@ -55,13 +55,13 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
       headers: {"Authorization" =>  "Bearer #{@token}"},
       params: { tournament: {name: 'my tourney', phases: [{from: Time.now, until: 10.minutes.from_now}]}}
     assert_response :unprocessable_entity
-    assert_includes JSON.parse(response.body)['phase']['name'], "can't be blank"
+    assert_includes JSON.parse(response.body)['error']['phase']['name'], "can't be blank"
 
     post "/api/v1/tournaments",
       headers: {"Authorization" =>  "Bearer #{@token}"},
       params: { tournament: {name: 'my tourney', phases: [{name: "myphase", from: Time.now, until: 10.minutes.ago}]}}
     assert_response :unprocessable_entity
-    assert_includes JSON.parse(response.body)['phase']['until'], "must be after from"
+    assert_includes JSON.parse(response.body)['error']['phase']['until'], "must be after from"
 
     post "/api/v1/tournaments",
       headers: {"Authorization" =>  "Bearer #{@token}"},
@@ -71,7 +71,7 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
         }]
       }]}}
     assert_response :unprocessable_entity
-    assert_includes JSON.parse(response.body)['match']['until'], "must be after from"
+    assert_includes JSON.parse(response.body)['error']['match']['until'], "must be after from"
 
   end
 

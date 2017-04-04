@@ -26,9 +26,9 @@ class Api::V1::TournamentsController < Api::V1::ApiController
       end
       render json: { tournament: {id: @tournament.id, link: url_for(tournament_path(id: @tournament.secret_token))}}
     rescue ActiveRecord::RecordInvalid => e
-      render json: {e.record.class.name.downcase => e.record.errors}, status: :unprocessable_entity 
+      render json: {error: {e.record.class.name.downcase => e.record.errors}}, status: :unprocessable_entity 
     rescue ActionController::ParameterMissing => e
-      render json: e.to_s, status: :unprocessable_entity 
+      render json: {error: e.to_s}, status: :unprocessable_entity 
     end
   end
 
