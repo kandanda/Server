@@ -8,7 +8,9 @@ class Api::V1::TournamentsController < Api::V1::ApiController
         @tournament = organizer.tournaments.build
       end
       Tournament.transaction do 
-        @tournament.name= par['name']
+        %w(name location).each do |key|
+          @tournament.send("#{key}=", par[key])
+        end
         @tournament.save!
         @tournament.phases.destroy_all
         par.require(:phases)

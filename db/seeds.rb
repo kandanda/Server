@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 o = Organizer.first
-t = o.tournaments.create(name: "Seeded Tourney")
+t = o.tournaments.create(name: "Seeded Tourney", location:"HSR Hochschule für Technik Rapperswil, Oberseestrasse 10, Rapperswil" )
 p1 = t.phases.create({name: "Phase 1", from: 20.days.ago, until: 5.days.ago})
 p2 = t.phases.create({name: "Phase 2", from: 5.days.ago, until: 5.days.from_now})
 participants = %w(
