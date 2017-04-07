@@ -24,6 +24,9 @@ class Api::V1::TournamentsController < Api::V1::ApiController
           end
         end
       end
+      @tournament.tournament_subscriptions.each do |sub|
+        TournamentMailer.update_email(Tournament.first, sub.email, sub.unsubscribe_token).deliver_later
+      end
       render json: { tournament: {id: @tournament.id, link: url_for(tournament_path(id: @tournament.secret_token))}}
     rescue ActiveRecord::RecordInvalid => e
       render json: {error: {e.record.class.name.downcase => e.record.errors}}, status: :unprocessable_entity 

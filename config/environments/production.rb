@@ -96,3 +96,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+Sidekiq.configure_server do |config|
+  config.redis = { url: ENV['REDIS_URL'], namespace: 'kandanda_sidekiq'}
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: ENV['REDIS_URL'], namespace: 'kandanda_sidekiq'}
+end

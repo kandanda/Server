@@ -1,0 +1,6 @@
+p A tournament you are subscribed to was updated.
+p= link_to @tournament.name, tournament_url(id: @tournament.secret_token)
+
+p 
+  | If you no longer want to receive these E-Mail you can
+  =< link_to "unsubscribe", unsubscribe_tournament_url(token: @unsubscribe_token)
