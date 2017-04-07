@@ -86,6 +86,7 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
 
     t = Tournament.last
     assert_equal "My little tournament", t.name
+    assert_includes t.location, "HSR"
     assert_equal 2, t.phases.count
     assert_equal 2, t.phases.first.matches.count
     assert_equal 2, t.phases.first.matches.first.participants.count
