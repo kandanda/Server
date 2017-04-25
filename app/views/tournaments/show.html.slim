@@ -10,7 +10,8 @@
 
 
   .large-6.columns
-    = render partial: "shared/google_maps", locals: {location: "HSR Rapperswil"}
+    - unless @tournament.location.blank?
+      = render partial: "shared/google_maps", locals: {location: @tournament.location}
 
 .row
   .large-12.columns

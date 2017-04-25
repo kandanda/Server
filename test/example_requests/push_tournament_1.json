@@ -2,6 +2,7 @@
   "tournament": {
     "id": 1234,
     "name": "My little tournament",
+    "location": "HSR Hochschule für Technik Rapperswil, Oberseestrasse 10, Rapperswil",
     "phases": [
       {
         "name": "Gruppenphase",
