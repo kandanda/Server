@@ -1,5 +1,6 @@
 class Tournament < ApplicationRecord
   has_many :phases
+  has_many :tournament_subscriptions
   validates_presence_of :name, :secret_token
   before_validation do
     self.set_token

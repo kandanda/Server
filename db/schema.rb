@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407074650) do
+ActiveRecord::Schema.define(version: 20170407115426) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(version: 20170407074650) do
     t.integer  "tournament_id", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "tournament_subscriptions", force: :cascade do |t|
+    t.integer  "tournament_id",     null: false
+    t.string   "email",             null: false
+    t.string   "unsubscribe_token", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "tournaments", force: :cascade do |t|

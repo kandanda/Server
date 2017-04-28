@@ -1,6 +1,14 @@
 .row
   .large-6.columns
     h1= @tournament
+    = form_tag(subscribe_tournament_path(id: @tournament.secret_token), class: 'custom') do
+      .input-group
+        span.input-group-label @
+        = text_field_tag :email, "", placeholder: "Your E-Mail", class: "input-group-field"
+        .input-group-button
+          = submit_tag "Subscribe for Updates", name: nil, class: 'button postfix'
+
+
   .large-6.columns
     - unless @tournament.location.blank?
       = render partial: "shared/google_maps", locals: {location: @tournament.location}

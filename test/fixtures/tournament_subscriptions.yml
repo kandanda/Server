@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tournament_id: 1
+  email: abc@kandanda.ch
+  unsubscribe_token: 1234567890abcdef
+
+two:
+  tournament_id: 2
+  email: xyz@kandanda.ch
+  unsubscribe_token: 1234567890abcdef
