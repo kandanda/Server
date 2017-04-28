@@ -20,8 +20,8 @@ class TournamentsController < ApplicationController
     end
   end
   def unsubscribe
-    @tournament_subscription = TournamentSubscription.where(unsubscribe_token: params[:unsubscribe_token]).first!
-    @tournament = @tournament_subscription.tournament
+    @tournament = Tournament.where(secret_token: params[:token]).first!
+    @tournament_subscription = @tournament.tournament_subscriptions.where(unsubscribe_token: params[:unsubscribe_token]).first!
     @tournament_subscription.destroy
     redirect_to tournament_path(id: @tournament.secret_token), flash: {notice: "Sucessfully unsubscribed"}
   end
