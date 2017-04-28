@@ -25,6 +25,17 @@ class AdminTest < ActionDispatch::IntegrationTest
     get "/admin/organizers"
     assert_response :success
   end
+
+  test "test edit of admin_users" do
+    get "/admin/admin_users/1/edit"
+    assert_response :success
+  end
+
+
+  test "test show tournament subscriptions" do
+    get "/admin/tournament_subscriptions"
+    assert_response :success
+  end
 end
 
 
