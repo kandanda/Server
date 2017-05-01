@@ -1,6 +1,11 @@
 .row
-  .small-12.large-8.columns
+  .small-12.large-12.columns
     h1 Welcome to Kandanda!
-  .small-12.large-4.columns
     hr
-    = image_tag "kandanda_logo"
+.row
+  .large-4.column.large-offset-4.small-12
+    = image_tag "kandanda_logo", class: 'logo'
+.row
+  .small-12.column.large-6.large-offset-3
+    .panel.callout
+      = link_to "Sign Up to start publishing your tournaments on Kandanda", new_organizer_registration_path, class: "button large"

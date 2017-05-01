@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+  before_action :authenticate_organizer!, only: [:my]
   def show
     @tournament = Tournament.where(secret_token: params[:id]).first!
   end

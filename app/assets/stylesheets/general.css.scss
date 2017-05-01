@@ -1,0 +1,21 @@
+$footer-height: 80px;
+#main {
+  margin-bottom: $footer-height;
+}
+#footer {
+  background: #eee;
+  width: 100%;
+  height: $footer-height;
+  position:fixed;
+  bottom:0;
+  border-top: 2px solid #ccc;
+  .row {
+    .columns {
+      padding: 20px;
+    }
+  }
+}
+
+img.logo {
+  margin-bottom: 30px;
+}
