@@ -3,14 +3,11 @@
 #main-menu.top-bar data= {topbar: true, options: "is_hover:false"}
   .top-bar-left
     ul.dropdown.menu(data-dropdown-menu=true)
-      li
-        = link_to "Kandanda", root_path
-      li
-        a href= '#' Spielpläne
+      li= link_to "Kandanda", root_path
+      li= link_to "Meine Turniere", my_tournaments_path
   .top-bar-right
     ul.menu(data-responsive-menu="drilldown medium-dropdown")
       - if current_organizer
-        li= link_to "Meine Turniere", my_tournaments_path
         li.has-submenu
           a href= '#' Logged in as #{current_organizer}
           ul.submenu.menu.vertical

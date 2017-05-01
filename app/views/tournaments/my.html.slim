@@ -1,2 +1,10 @@
-- @tournaments.each do |t|
-  h1=link_to t, tournament_path(t.secret_token)
+h1 My Tournaments
+- if @tournaments.size > 0
+  - @tournaments.each do |t|
+    .panel.callout
+      h2=link_to t, tournament_path(t.secret_token)
+      ul
+        - t.participants.pluck(:name).sort.uniq.first(6).each do |pname|
+          li= pname
+- else
+  p You do not currently have any tournaments. Try uploading one through the client.
