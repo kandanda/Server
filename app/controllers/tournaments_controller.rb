@@ -1,6 +1,7 @@
 class TournamentsController < ApplicationController
   def show
     @tournament = Tournament.where(secret_token: params[:id]).first!
+    @participant_filter = params[:participant_filter]
   end
   def my
     @tournaments = current_organizer.tournaments
