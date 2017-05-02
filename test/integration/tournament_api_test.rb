@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class TournamentApiTest < ActionDispatch::IntegrationTest
+  include ActiveJob::TestHelper
   def setup
     @organizer = Organizer.first
 
@@ -106,6 +107,23 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_includes response.body, "My little tournament"
 
+    t.tournament_subscriptions.create!(email: "subscriber@kandanda.ch")
+    perform_enqueued_jobs do
+      post "/api/v1/tournaments",
+        headers: {"Authorization" =>  "Bearer #{@token}"},
+        params: JSON.parse(File.read(File.join(Rails.root, "test/example_requests/push_tournament_2.json")).gsub("1234", t.id.to_s))
+    end
+
+    assert_response :success
+
+    assert_equal t.id, Tournament.last.id
+    t.reload
+    assert_equal "My little updated tournament", t.name
+    assert_includes "Gruppenphase 1", t.phases.first.name
+    email = ActionMailer::Base.deliveries.last
+    assert_equal ['no-reply@kandanda.ch'], email.from
+    assert_equal ['subscriber@kandanda.ch'], email.to
+    assert_equal '[Kandanda] Tournament Tournier März updated', email.subject
   end
 
   def temper_with(token)

@@ -1,0 +1,53 @@
+{
+  "tournament": {
+    "id": 1234,
+    "name": "My little updated tournament",
+    "location": "HSR Hochschule für Technik Rapperswil, Oberseestrasse 10, Rapperswil",
+    "phases": [
+      {
+        "name": "Gruppenphase 1",
+        "from":  "2017-02-10T08:10:00.000+01:00",
+        "until": "2017-03-11T18:10:00.000+01:00",
+        "matches":[
+          {
+            "from":  "2017-02-11T08:10:00.000+01:00",
+            "until": "2017-02-11T09:10:00.000+01:00",
+            "place": "Halle 1",
+            "participants": [
+              {
+                "name": "Team 1",
+                "result": 5
+              },
+              {
+                "name": "Team 7",
+                "result": 3
+              }
+            ]
+          },
+          {
+            "from":  "2017-02-11T09:10:00.000+01:00",
+            "until": "2017-02-11T10:10:00.000+01:00",
+            "place": "Halle 2",
+            "participants": [
+              {
+                "name": "Team 7",
+                "result": null
+              },
+              {
+                "name": "Team 3",
+                "result": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Knockout",
+        "from":  "2017-03-15T08:10:00.000+01:00",
+        "until": "2017-03-22T18:10:00.000+01:00",
+        "matches":[]
+      }
+    ]
+     
+  }
+}
