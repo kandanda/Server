@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :organizers
   get "/tournaments/my" => "tournaments#my", as: 'my_tournaments'
   get "/tournaments/:id" => "tournaments#show", as: 'tournament'
+  get "/tournaments/:id/embed" => "tournaments#embed", as: 'embed_tournament'
   post "/tournaments/:id/subscribe" => "tournaments#subscribe", as: 'subscribe_tournament'
   get "/tournaments/unsubscribe/:token" => "tournaments#unsubscribe", as: 'unsubscribe_tournament'
   namespace :api do
