@@ -13,7 +13,7 @@ class TournamentsController < ApplicationController
     @tournament_subscription.tournament = @tournament
     @tournament_subscription.email = params[:email]
     if @tournament_subscription.save
-      redirect_to tournament_path(id: @tournament.secret_token), flash: {notice: "Sucessfully subscribed"}
+      redirect_to tournament_path(id: @tournament.secret_token), flash: {notice: "Successfully subscribed"}
     else
       @tournament_subscription.errors.full_messages.each do |e|
         flash[:alert]= e

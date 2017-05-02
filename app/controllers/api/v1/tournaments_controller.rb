@@ -1,5 +1,5 @@
 class Api::V1::TournamentsController < Api::V1::ApiController
-  before_filter :authenticate_organizer!
+  before_action :authenticate_organizer!
   def create
     organizer = current_organizer
     begin

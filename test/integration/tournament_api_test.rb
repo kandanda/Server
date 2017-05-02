@@ -90,6 +90,7 @@ class TournamentApiTest < ActionDispatch::IntegrationTest
     assert_equal 2, t.phases.count
     assert_equal 2, t.phases.first.matches.count
     assert_equal 2, t.phases.first.matches.first.participants.count
+    assert_equal "Team 1", t.phases.first.matches.first.participants.first.to_s
     assert_equal 2, t.phases.first.matches.last.participants.count
     assert_equal 0, t.phases.last.matches.count
 
