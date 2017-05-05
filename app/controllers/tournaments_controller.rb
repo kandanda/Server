@@ -4,6 +4,13 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.where(secret_token: params[:id]).first!
     @participant_filter = params[:participant_filter]
   end
+
+  def embed
+    @tournament = Tournament.where(secret_token: params[:id]).first!
+    response.headers.delete "X-Frame-Options"
+    render layout: 'embedded'
+  end
+
   def my
     @tournaments = current_organizer.tournaments
   end

@@ -49,3 +49,10 @@
             td= l match.from
             td= l match.until
             td= match.place
+
+.row
+  .large-12.columns
+    h3 Embedding
+    p Add this snippet to your website to display the tournament schedule
+    textarea
+      = %Q(<iframe width="1170" height="800" src="#{embed_tournament_url(@tournament.secret_token)}" frameborder="0" ></iframe>)

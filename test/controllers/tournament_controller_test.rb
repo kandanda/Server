@@ -25,4 +25,10 @@ class TournamentControllerTest < ActionDispatch::IntegrationTest
      assert_equal 1, tournament.tournament_subscriptions.count
 
    end
+   test "tournament embed works" do
+     tournament = Tournament.find(1)
+     get embed_tournament_path(tournament.secret_token)
+     assert_response :success
+   end
+
 end
