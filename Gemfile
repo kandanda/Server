@@ -8,7 +8,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1.1'
 
 gem 'mysql2'
 # Use Puma as the app server
@@ -45,7 +45,7 @@ gem "sentry-raven"
 
 gem 'newrelic_rpm'
 gem 'jwt'
-gem 'activeadmin', '1.0.0.pre5'
+gem 'activeadmin', '~> 1.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
