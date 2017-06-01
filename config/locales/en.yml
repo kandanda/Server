@@ -22,4 +22,4 @@
 en:
   time:
     formats:
-      default: "%d.%m.%Y %I:%M"
+      default: "%d.%m.%Y %I:%M %P"
